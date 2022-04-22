@@ -71,4 +71,6 @@ function get_hybrids()
     $statement->closeCursor();
     return $productList;
 }
+
+
 ?>

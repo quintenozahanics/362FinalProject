@@ -3,19 +3,19 @@
         <h2>All Products</h2>
             <table>
                 <tr>
-                    <th>Product ID</th>
                     <th>Product Code</th>
-                    <th>Product Name</th>
-                    <th>Product Price</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Add To Cart</th>
                 </tr>
 
                 </tr>
                 <?php foreach($productList as $products) : ?>
                 <tr>
-                    <td><?php echo $products['productID']; ?></td>
                     <td><?php echo $products['productCode']; ?></td>
                     <td><?php echo $products['productName']; ?></td>
                     <td><?php echo $products['listPrice']; ?></td>
+                    <td><?php echo "<input type='button' onclick='' value='Add To Cart'>"; ?></td>
                 </tr>
                 <?php endforeach;?>
             </table>

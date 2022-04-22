@@ -10,9 +10,9 @@ $db = new PDO($dsn, $username, $password);
 
 if (isset($_POST["login"])) {
     if (empty($_POST["uname"]) || empty($_POST["pass"])) {
-        $errorMsg = '<p style="color: red; font-size: 24pt;"> ERROR: Username and Password cannot be blank </p>';
+        $errorMsg = '<p style="color: red; font-size: 24pt;"> ERROR: Fields cannot be blank </p>';
     } else {
-        $query = "SELECT * FROM admint WHERE uname = :uname AND pass = :pass";
+        $query = "SELECT * FROM users WHERE uname = :uname AND pass = :pass";
         $statement = $db->prepare($query);
         $statement->execute(
 
@@ -46,7 +46,7 @@ if (isset($_POST["login"])) {
                 $_SESSION["uname"] = $_POST["uname"];
                 header("Location:userSuccess.php");
             } else {
-                $errorMsg = '<p style="color: red; font-size: 24pt;"> ERROR: Username and/or password are incorrect! </p>';
+                $errorMsg = '<p style="color: red; font-size: 24pt;"> ERROR: Invalid credentials. </p>';
             }
         }
     }
@@ -57,9 +57,9 @@ if (isset($_POST["login"])) {
 <?php include '../view/header.php'; ?>
 <h2>Login</h2>
 <form method="POST">
-    <input type="text" name="uname">Enter Username: </input>
+    <input type="text" placeholder="Username:" name="uname"></input>
     <br>
-    <input type="password" name="pass">Enter Password: </input>
+    <input type="password" placeholder="Password:" name="pass"></input>
     <br>
     <input type="submit" value="Login" name="login">
     <br>

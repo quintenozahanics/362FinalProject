@@ -3,7 +3,7 @@
 
 <!-- the head section -->
 <head>
-    <title>Final Project</title>
+    <title>Gorecki's Golf Outlet</title>
     <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <!-- the body section -->
