@@ -1,8 +1,8 @@
 <?php include '../view/header.php'; ?>
     <main>
         <h2>Cart</h2>
-        <?php if (empty($_SESSION['cart12']) || 
-                  count($_SESSION['cart12']) == 0) : ?>
+        <?php if (empty($_SESSION['cart']) || 
+                  count($_SESSION['cart']) == 0) : ?>
             <p>There are no items in your cart.</p>
         <?php else: ?>
             <form action="." method="post">
@@ -15,13 +15,13 @@
                     <th class="right">Item Total</th>
                 </tr>
 
-            <?php foreach( $_SESSION['cart12'] as $key => $item ) :
-                $cost  = number_format($item['cost'],  2);
+            <?php foreach( $_SESSION['cart'] as $key => $item ) :
+                $cost  = number_format($item['listPrice'],  2);
                 $total = number_format($item['total'], 2);
             ?>
                 <tr>
                     <td>
-                        <?php echo $item['name']; ?>
+                        <?php echo $item['productName']; ?>
                     </td>
                     <td class="right">
                         $<?php echo $cost; ?>

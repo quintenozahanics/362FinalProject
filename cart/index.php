@@ -4,15 +4,11 @@ $lifetime = 60 * 60 * 24 * 14;    // 2 weeks in seconds
 session_set_cookie_params($lifetime, '/');
 session_start();
 
-// Create a cart array if needed
-if (empty($_SESSION['cart12'])) { $_SESSION['cart12'] = array(); }
+include('../model/database.php');
+include('../model/functions.php');
 
 // Create a table of products
-$products = array();
-$products['MMS-1754'] = array('name' => 'Flute', 'cost' => '149.50');
-$products['MMS-6289'] = array('name' => 'Trumpet', 'cost' => '199.50');
-$products['MMS-3408'] = array('name' => 'Clarinet', 'cost' => '299.50');
-
+$productList=get_products();
 
 // Include cart functions
 require_once('cart.php');
@@ -38,7 +34,7 @@ switch($action) {
         $new_qty_list = filter_input(INPUT_POST, 'newqty', FILTER_DEFAULT, 
                                      FILTER_REQUIRE_ARRAY);
         foreach($new_qty_list as $key => $qty) {
-            if ($_SESSION['cart12'][$key]['qty'] != $qty) {
+            if ($_SESSION['cart'][$key]['qty'] != $qty) {
                 update_item($key, $qty);
             }
         }
@@ -51,7 +47,7 @@ switch($action) {
         include('add_item_view.php');
         break;
     case 'empty_cart':
-        unset($_SESSION['cart12']);
+        unset($_SESSION['cart']);
         include('cart_view.php');
         break;
 }

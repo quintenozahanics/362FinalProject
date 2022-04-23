@@ -12,6 +12,6 @@
         <a href='../putters/'>Putters</a>
         <a href='../hybrids/'>Hybrids</a>
     </p>
-    <a href="../cart/">Go to Cart!</a>
-    <a href="logout.php">Click me to Logout!</a>
+    <a href="../cart/">View Cart</a>
+    <p><a href="logout.php">Logout</a>
 <?php include '../view/footer.php'; ?>

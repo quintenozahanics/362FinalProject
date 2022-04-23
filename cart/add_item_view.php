@@ -6,9 +6,9 @@
 
             <label>Name:</label>
             <select name="productkey">
-            <?php foreach($products as $key => $product) :
-                $cost = number_format($product['cost'], 2);
-                $name = $product['name'];
+            <?php foreach($productList as $key => $product) :
+                $cost = number_format($product['listPrice'], 2);
+                $name = $product['productName'];
                 $item = $name . ' ($' . $cost . ')';
             ?>
                 <option value="<?php echo $key; ?>">

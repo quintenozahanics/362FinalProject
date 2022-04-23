@@ -1,3 +1,4 @@
+<?php include('../cart/cart.php');?>
 <?php include '../view/header.php'; ?>
     <main>
         <h2>All Products</h2>
@@ -15,7 +16,7 @@
                     <td><?php echo $products['productCode']; ?></td>
                     <td><?php echo $products['productName']; ?></td>
                     <td><?php echo $products['listPrice']; ?></td>
-                    <td><?php echo "<input type='button' onclick='' value='Add To Cart'>"; ?></td>
+                    <td><?php echo "<input type='button' onclick='add_item()' value='Add To Cart'>"; ?></td>
                 </tr>
                 <?php endforeach;?>
             </table>
@@ -26,6 +27,6 @@
                 <a href="../putters/">Putters</a>
                 <a href="../hybrids/">Hybrids</a></p>
             </section>
-            <br><a href="../login/index.php">Back to login</a>
+            <br><a href="../login/userSuccess.php">Back to Home</a>
     </main>
 <?php include '../view/footer.php'; ?>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 $dsn = "mysql:host=sql5.freemysqlhosting.net; dbname=sql5483898";
 $username = "sql5483898";
@@ -12,7 +11,7 @@ if (isset($_POST["login"])) {
     if (empty($_POST["uname"]) || empty($_POST["pass"])) {
         $errorMsg = '<p style="color: red; font-size: 24pt;"> ERROR: Fields cannot be blank </p>';
     } else {
-        $query = "SELECT * FROM users WHERE uname = :uname AND pass = :pass";
+        $query = "SELECT * FROM users WHERE uname = :uname AND pass = :pass AND type = 'A'";
         $statement = $db->prepare($query);
         $statement->execute(
 

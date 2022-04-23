@@ -24,5 +24,6 @@
                 <a href="../putters/">Putters</a>
                 <a href="../hybrids/">Hybrids</a></p>
             </section>
+            <br><a href="../login/userSuccess.php">Back to Home</a>
     </main>
 <?php include '../view/footer.php'; ?>
