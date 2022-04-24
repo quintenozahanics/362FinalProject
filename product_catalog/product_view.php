@@ -20,13 +20,13 @@ include '../view/header.php'; ?>
     <section>
         <h1><?php echo $name; ?></h1>
         <div id="right_column">
-            <p><b>List Price:</b> $<?php echo $list_price; ?></p>
+            <p><label>List Price:</label> $<?php echo $cost; ?></p>
             <form action="<?php echo '../cart' ?>" method="post">
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="product_id"
                        value="<?php echo $product_id; ?>">
-                <b>Quantity:</b>
-                <input id="qty" type="text" name="quantity" 
+                <Label>Quantity:</label>
+                <input id="itemqty" type="text" name="quantity" 
                        value="1" size="2">
                 <br><br>
                 <input type="submit" value="Add to Cart">
@@ -36,3 +36,5 @@ include '../view/header.php'; ?>
     <a style='float: right;' href="../login/userSuccess.php">Back to Home</a></p>
 </main>
 <?php include '../view/footer.php'; ?>
+
+<form action="." method="post"

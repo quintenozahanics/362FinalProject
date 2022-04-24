@@ -2,6 +2,8 @@
 
     //if no user is logged in sends you to the login page
     session_start();
+    if (empty($_SESSION['cart'])) { $_SESSION['cart'] = array(); }
+    
     if(!isset($_SESSION["uname"])){
         header("Location:index.php");
      }

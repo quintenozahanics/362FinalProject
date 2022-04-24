@@ -20,11 +20,16 @@
         <nav>
         <ul>
             <!-- display links for products in selected category -->
-            <?php foreach ($productList as $key => $product) : ?>
+            <?php foreach($productList as $key => $product) :
+                $prodID = ($product['productID']);
+                $cost = number_format($product['listPrice'], 2);
+                $name = $product['productName'];
+                $item = $name . ' ($' . $cost . ')';
+            ?>
             <li>
                 <a href="?action=view_product&amp;product_id=<?php 
-                          echo $product['productID']; ?>">
-                    <?php echo $product['productName']; ?>
+                          echo $prodID; ?>">
+                    <?php echo $name; ?>
                 </a>
             </li>
             <?php endforeach; ?>
