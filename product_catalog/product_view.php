@@ -1,5 +1,8 @@
-<?php require_once '../cart/cart.php';
-include '../view/header.php'; ?>
+<?php 
+    require_once '../cart/cart.php';
+    include '../view/header.php';
+?>
+
 <main>
     <aside>
         <h1>Categories</h1>
@@ -28,8 +31,16 @@ include '../view/header.php'; ?>
                 <Label>Quantity:</label>
                 <input id="itemqty" type="text" name="quantity" 
                        value="1" size="2">
+
+                <?php
+                    $statement = $db->prepare("SELECT categoryID FROM products WHERE productID=?");
+                    $statement->bindParam(1, $product_id);
+                    $statement->execute();
+                    $queriedCatID = $statement->fetch();   
+                ?>
                 <br><br>
                 <input type="submit" value="Add to Cart">
+                <?php displayImage($queriedCatID[0]) ?>
             </form>
         </div>
     </section>

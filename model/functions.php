@@ -60,4 +60,25 @@ function add_product($category_id, $code, $name, $price) {
     $statement->execute();
     $statement->closeCursor();
 }
+
+function displayImage($code){
+    switch ($code){
+        case 1:
+            echo "<img src='../images/driver.jpg' width='100%' height='100%'>";
+            break;
+        case 2:
+            echo "<img src='../images/iron.jpeg' width='100%' height='100%'>";
+            break;
+        case 3:
+            echo "<img src='../images/wedge.jpeg' width='100%' height='100%'>";
+            break;
+        case 4:
+            echo "<img src='../images/putter.jpg' width='100%' height='100%'>";
+            break;
+        case 5:
+            echo "<img src='../images/hybrid.jpeg' width='100%' height='100%'>";
+            break;
+    }
+}
+
 ?>
