@@ -4,6 +4,6 @@
 <main>
     <h2>Welcome to our golf shop!</h2>
     <p><a href="../362FinalProject/login/">Please log in to continue</a>
-    <p><a href="../362FinalProject/allProducts/">Continue as guest</a>
+    <a style="float: right;" href="../362FinalProject/product_catalog/">Continue as guest</a></p>
 </main>
 <?php include '../362FinalProject/view/footer.php'; ?>

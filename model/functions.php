@@ -1,5 +1,4 @@
 <?php
-
 function get_products()
 {
     global $db;
@@ -12,65 +11,53 @@ function get_products()
     return $productList;
 }
 
-function get_drivers()
-{
+function get_products_by_category($category_id) {
     global $db;
-    $queryDrivers = "SELECT * FROM products
-                        WHERE categoryID = 1 ORDER BY productID";
-    $statement = $db->prepare($queryDrivers);
+    $query = 'SELECT * FROM products
+              WHERE products.categoryID = :category_id
+              ORDER BY productID';
+    $statement = $db->prepare($query);
+    $statement->bindValue(":category_id", $category_id);
     $statement->execute();
-    $productList  = $statement->fetchAll();
+    $products = $statement->fetchAll();
     $statement->closeCursor();
-    return $productList;
+    return $products;
 }
 
-function get_irons()
-{
+function get_product($product_id) {
     global $db;
-    $queryDrivers = "SELECT * FROM products
-                        WHERE categoryID = 2 ORDER BY productID";
-    $statement = $db->prepare($queryDrivers);
+    $query = 'SELECT * FROM products
+              WHERE productID = :product_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(":product_id", $product_id);
     $statement->execute();
-    $productList  = $statement->fetchAll();
+    $product = $statement->fetch();
     $statement->closeCursor();
-    return $productList;
+    return $product;
 }
 
-function get_wedges()
-{
+function delete_product($product_id) {
     global $db;
-    $queryDrivers = "SELECT * FROM products
-                        WHERE categoryID = 3 ORDER BY productID";
-    $statement = $db->prepare($queryDrivers);
+    $query = 'DELETE FROM products
+              WHERE productID = :product_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':product_id', $product_id);
     $statement->execute();
-    $productList  = $statement->fetchAll();
     $statement->closeCursor();
-    return $productList;
 }
 
-function get_putters()
-{
+function add_product($category_id, $code, $name, $price) {
     global $db;
-    $queryDrivers = "SELECT * FROM products
-                        WHERE categoryID = 4 ORDER BY productID";
-    $statement = $db->prepare($queryDrivers);
+    $query = 'INSERT INTO products
+                 (categoryID, productCode, productName, listPrice)
+              VALUES
+                 (:category_id, :code, :name, :price)';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':category_id', $category_id);
+    $statement->bindValue(':code', $code);
+    $statement->bindValue(':name', $name);
+    $statement->bindValue(':price', $price);
     $statement->execute();
-    $productList  = $statement->fetchAll();
     $statement->closeCursor();
-    return $productList;
 }
-
-function get_hybrids()
-{
-    global $db;
-    $queryDrivers = "SELECT * FROM products
-                        WHERE categoryID = 5 ORDER BY productID";
-    $statement = $db->prepare($queryDrivers);
-    $statement->execute();
-    $productList  = $statement->fetchAll();
-    $statement->closeCursor();
-    return $productList;
-}
-
-
 ?>

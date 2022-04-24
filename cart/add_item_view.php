@@ -29,6 +29,8 @@
             <label>&nbsp;</label>
             <input type="submit" value="Add Item">
         </form>
-        <p><a href=".?action=show_cart">View Cart</a></p> 
-        <p><a href="../login/userSuccess.php">Back to login</a></p>   
+        <p><a href=".?action=show_cart">View Cart</a> 
+        <a style='float: right;' href="../login/userSuccess.php">Back to login</a></p>   
         <?php include '../view/footer.php'; ?> 
+
+        

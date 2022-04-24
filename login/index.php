@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $dsn = "mysql:host=sql5.freemysqlhosting.net; dbname=sql5483898";
 $username = "sql5483898";
 $password = "ulgzmHhz7l";
@@ -62,9 +62,8 @@ if (isset($_POST["login"])) {
     <br>
     <input type="submit" value="Login" name="login">
     <br>
-    <p><a href="createAccount.php">Create Account</a>
-    <br>
-    <p><a href="../allProducts/">Continue as guest</a>
+        <p><a href="../product_catalog/">Continue as guest</a>
+        <a style='float: right;' href="createAccount.php">Create Account</a></p>
 </form>
 
 <?php

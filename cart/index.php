@@ -1,14 +1,16 @@
 <?php
-// Start session management with a persistent cookie
-$lifetime = 60 * 60 * 24 * 14;    // 2 weeks in seconds
-session_set_cookie_params($lifetime, '/');
 session_start();
+if(!isset($_SESSION["uname"])){
+    header("Location:../login/");
+ }
 
 include('../model/database.php');
 include('../model/functions.php');
 
 // Create a table of products
 $productList=get_products();
+
+if (empty($_SESSION['cart'])) { $_SESSION['cart'] = array(); }
 
 // Include cart functions
 require_once('cart.php');
@@ -18,7 +20,7 @@ $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action === NULL) {
-        $action = 'show_add_item';
+        $action = 'show_cart';
     }
 }
 
@@ -51,4 +53,5 @@ switch($action) {
         include('cart_view.php');
         break;
 }
+print($productList);
 ?>

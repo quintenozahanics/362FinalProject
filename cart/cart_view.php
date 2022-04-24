@@ -1,7 +1,8 @@
 <?php include '../view/header.php'; ?>
     <main>
         <h2>Cart</h2>
-        <?php if (empty($_SESSION['cart']) || 
+        <?php echo '<strong><p style="color: black; font-size: 12pt">Viewing cart for ' . $_SESSION["uname"] . ' </p></strong>'; 
+        if (empty($_SESSION['cart']) || 
                   count($_SESSION['cart']) == 0) : ?>
             <p>There are no items in your cart.</p>
         <?php else: ?>
@@ -51,7 +52,8 @@
             </p>
             </form>
         <?php endif; ?>
-        <p><a href=".?action=show_add_item">Add Item</a></p>
-        <p><a href=".?action=empty_cart">Empty Cart</a></p>
+        <p><a href=".?action=show_add_item">Add Item</a>
+        <a href=".?action=empty_cart">Empty Cart</a>
+        <a style='float: right;' href="../login/userSuccess.php">Back to login</a></p> 
     </main>
     <?php include '../view/footer.php'; ?>    
