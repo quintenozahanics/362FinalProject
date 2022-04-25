@@ -1,4 +1,31 @@
-<?php include '../view/header.php'; ?>
+<?php include '../view/header.php';
+
+    if (empty($_SESSION["cart"])) {
+        $errorMsg = '<p style="color: red; font-size: 24pt;"> Must have items in cart to check out </p>';
+    }
+    else {
+        $dsn = 'mysql:host=sql5.freemysqlhosting.net;dbname=sql5483898';
+        $username = 'sql5483898';
+        $password = 'ulgzmHhz7l';
+        $db = new PDO($dsn, $username, $password);
+        
+        $data = ['uname' => $_SESSION["uname"],
+            'cart' => $_SESSION["cart"],
+            'subtotal' =>  get_subtotal(),
+            'finalTotal' => get_finalTotal()];
+            $query = "INSERT INTO orders (uname, subtotal, finalTotal, cart) VALUES (:uname, :subtotal, :finalTotal, :cart)";
+            $statement = $db->prepare($query);
+    
+            try{
+                $statement->execute($data);
+                $errorMsg = "<p style='color: green; font-size: 24pt;'> Order Added </p>";
+            }
+            catch(Exception $e){
+                echo "Error: " . $e->getMessage();
+            }
+        }
+
+?>
     <main>
         <h2>Checkout Receipt</h2>
         <?php echo '<strong><p style="color: black; font-size: 12pt">Viewing order for ' . $_SESSION["uname"] . ' </p></strong>'; 
@@ -34,16 +61,24 @@
                     
                 </tr>
             <?php endforeach; ?>
-                <tr id="cart_footer">
+            <tr id="cart_footer">
                     <td colspan="3"><b>Subtotal</b></td>
-                    <td>$<?php echo get_subtotal(); ?></td>
+                    <td class="right">$<?php echo get_subtotal(); ?></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><b>With Tax</b>
+                    <td class="right">$<?php echo get_salesTax(); ?></td>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"><b>Final Total with Shipping</b>
+                    <td class="right"><b>$<?php echo get_finalTotal(); ?></b></td>
+                    </td>
                 </tr>
             </table>
             <p>Screenshot page for personal records.</p>
             <p><a href=".?action=confirm">Click Here To Confirm Once You Have Your Receipt</a>
             </form>
-        <?php endif; ?>
-        
-        <a style='float: right;' href="../login/userSuccess.php">Back to Home</a></p> 
+        <?php endif; ?> 
     </main>
-    <?php include '../view/footer.php'; ?>    
+    <?php include '../view/footer.php'; ?>

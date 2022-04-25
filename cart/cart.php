@@ -47,4 +47,26 @@ function get_subtotal() {
     $subtotal_f = number_format($subtotal, 2);
     return $subtotal_f;
 }
+
+function get_salesTax() {
+    $salesTax = .07;
+    foreach ($_SESSION['cart'] as $item) {
+        $taxCalc = $item['total'] * $salesTax;
+        $taxTotal = $item['total'] + $taxCalc;
+    }
+    $afterTax = number_format($taxTotal, 2);
+    return $afterTax;
+}
+
+function get_finalTotal() {
+    $salesTax = .07;
+    $shipRate = 10;
+    foreach ($_SESSION['cart'] as $item) {
+        $taxCalc = $item['total'] * $salesTax;
+        $taxTotal = $item['total'] + $taxCalc;
+        $shipTotal = $taxTotal + $shipRate;
+    }
+    $finalTotal = number_format($shipTotal, 2);
+    return $finalTotal;
+}
 ?>

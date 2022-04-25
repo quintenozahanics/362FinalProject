@@ -34,7 +34,7 @@
                     </td>
                     <td class="right">
                         $<?php echo $total; ?>
-                    </td>
+                    </td>                 
                 </tr>
             <?php endforeach; ?>
                 <tr id="cart_footer">
@@ -42,11 +42,20 @@
                     <td>$<?php echo get_subtotal(); ?></td>
                 </tr>
                 <tr>
+                    <td colspan="3"><b>With Tax</b>
+                    <td>$<?php echo get_salesTax(); ?></td>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"><b>After Shipping</b>
+                    <td>$<?php echo get_finalTotal(); ?></td>
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="4" class="right">
                         <input type="submit" value="Update Cart">
                     </td>
                 </tr>
-
             </table>
             <p>Click "Update Cart" to update quantities in your
                 cart. Enter a quantity of 0 to remove an item.
@@ -54,7 +63,7 @@
             </form>
         <?php endif; ?>
         
-        <p><a href=".?action=show_add_item">Add Item</a>
+        <p><a href=".?action=show_add_item" method="post">Add Item</a>
         <a href=".?action=empty_cart">Empty Cart</a>
         <a style='float: right;' href="../login/userSuccess.php">Back to login</a></p> 
         <a href=".?action=checkout">Checkout</a>

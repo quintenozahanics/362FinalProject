@@ -2,13 +2,13 @@ XX  Develop an online webstore using PHP, Apache web server, and MySQL (or Maria
 
 XX  You can pick any type of products to sell. (Should not be what was used as an example.) 
 
-X   The store must have webpage(s) that show a list of your products including pictures if applicable.[Still need pictures]
+XX  The store must have webpage(s) that show a list of your products including pictures if applicable.
 
-X   The user must be able to select a product and quantity and add it to a cart.
+XX  The user must be able to select a product and quantity and add it to a cart.
 
 XX  The user must be able to add multiple products to the cart. 
 
-    The user must be able to checkout and complete a purchase.
+XX  The user must be able to checkout and complete a purchase.
 
     The system must be able to log the sales transaction into the database. Remember you must save all the items purchased as well as the sales transaction.
 
