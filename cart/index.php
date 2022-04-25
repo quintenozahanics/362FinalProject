@@ -52,6 +52,10 @@ switch($action) {
         unset($_SESSION['cart']);
         include('cart_view.php');
         break;
+    case 'checkout':
+        include('checkout.php');
+        break;
+     case 'confirm':
+        include('order_confirmation.php');
+        break;
 }
-
-?>
