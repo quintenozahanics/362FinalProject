@@ -10,8 +10,7 @@
 ?>
 
 <p><a href="../admin/modifyProducts.php">Add a Product</a>
-<p><a href="../admin/sales.php">See Sales</a>
-<p><a href="../admin/deleteSale.php">Delete Sales</a>
-
+<p><a href="../admin/sales.php">View Sales</a>
 <p><a href="logout.php">Logout</a>
-    <?php include '../view/footer.php'; ?>
+
+<?php include '../view/footer.php'; ?>
