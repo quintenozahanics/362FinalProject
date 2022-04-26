@@ -10,7 +10,7 @@
         $db = new PDO($dsn, $username, $password);
         
         $data = ['uname' => $_SESSION["uname"],
-            'cart' => $_SESSION["cart"],
+            'cart' => get_cart_items(),
             'subtotal' =>  get_subtotal(),
             'finalTotal' => get_finalTotal()];
             $query = "INSERT INTO orders (uname, subtotal, finalTotal, cart) VALUES (:uname, :subtotal, :finalTotal, :cart)";

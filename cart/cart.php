@@ -18,7 +18,7 @@ function add_item($key, $quantity) {
         'productName' => $productList[$key]['productName'],
         'listPrice' => $cost,
         'qty'  => $quantity,
-        'total' => $total
+        'total' => $total,
     );
     $_SESSION['cart'][$key] = $item;
 }
@@ -49,24 +49,36 @@ function get_subtotal() {
 }
 
 function get_salesTax() {
+    $subtotal = 0;
     $salesTax = .07;
     foreach ($_SESSION['cart'] as $item) {
-        $taxCalc = $item['total'] * $salesTax;
-        $taxTotal = $item['total'] + $taxCalc;
+        $subtotal += $item['total'];
+        $taxCalc = $subtotal * $salesTax;
+        $taxTotal = $subtotal + $taxCalc;
     }
     $afterTax = number_format($taxTotal, 2);
     return $afterTax;
 }
 
 function get_finalTotal() {
+    $subtotal = 0;
     $salesTax = .07;
     $shipRate = 10;
     foreach ($_SESSION['cart'] as $item) {
-        $taxCalc = $item['total'] * $salesTax;
-        $taxTotal = $item['total'] + $taxCalc;
+        $subtotal += $item['total'];
+        $taxCalc = $subtotal * $salesTax;
+        $taxTotal = $subtotal + $taxCalc;
         $shipTotal = $taxTotal + $shipRate;
     }
     $finalTotal = number_format($shipTotal, 2);
     return $finalTotal;
+}
+
+function get_cart_items(){
+    $items = " ";
+    foreach( $_SESSION['cart'] as $item ) {
+        $items  .='Name:' . $item['productName'] . ', Price: ' . $item['total'] . ', Qty: ' . $item['qty'] . '; ' ;
+    }
+    return $items;
 }
 ?>

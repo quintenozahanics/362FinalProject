@@ -1,7 +1,8 @@
 <?php include '../view/header.php'; ?>
     <main>
         <h2>Cart</h2>
-        <?php echo '<strong><p style="color: black; font-size: 12pt">Viewing cart for ' . $_SESSION["uname"] . ' </p></strong>'; 
+        <?php 
+        echo '<strong><p style="color: black; font-size: 12pt">Viewing cart for ' . $_SESSION["uname"] . ' </p></strong>'; 
         if (empty($_SESSION['cart']) || 
                   count($_SESSION['cart']) == 0) : ?>
             <p>There are no items in your cart.</p>
