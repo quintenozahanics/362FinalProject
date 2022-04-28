@@ -54,8 +54,8 @@ function add_product($category_id, $code, $name, $price) {
                  (:category_id, :code, :name, :price)';
     $statement = $db->prepare($query);
     $statement->bindValue(':category_id', $category_id);
-    $statement->bindValue(':code', $code);
-    $statement->bindValue(':name', $name);
+    $statement->bindValue(':code',  $code);
+    $statement->bindValue(':name',  $name);
     $statement->bindValue(':price', $price);
     $statement->execute();
     $statement->closeCursor();
@@ -80,5 +80,64 @@ function displayImage($code){
             break;
     }
 }
+
+function getAllCustomers(){
+    $dsn = 'mysql:host=sql5.freemysqlhosting.net;dbname=sql5483898';
+    $username = 'sql5483898';
+    $password = 'ulgzmHhz7l';
+    $db = new PDO($dsn, $username, $password);
+    
+    $query = "SELECT fullname FROM sql5483898.users";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $users = $statement->fetchAll();
+    $statement->closeCursor();
+    return $users;
+}
+
+function showAllSales(){
+    $dsn = 'mysql:host=sql5.freemysqlhosting.net;dbname=sql5483898';
+    $username = 'sql5483898';
+    $password = 'ulgzmHhz7l';
+    $db = new PDO($dsn, $username, $password);
+
+    $query = "SELECT * FROM sql5483898.orders";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $orders = $statement->fetchAll();
+    $statement->closeCursor();
+    return $orders;
+
+}
+
+function showAllSalesButton(){
+    if(isset($_POST['all'])){
+        $orders = showAllSales();
+        foreach($orders as $order) :
+            echo "<tr>";
+            echo "<th>" . $order[0] . "</th>";
+            echo "<th>" . $order[1] . "</th>";
+            echo "<th>" . $order[2] . "</th>";
+            echo "<th>" . $order[3] . "</th>";
+            echo "<th>" . $order[4] . "</th>";
+            echo "<th><input name='order' type='submit' value='Delete Sale'/><br></th>";
+            echo "</tr>";
+        endforeach; 
+
+    }
+}
+
+function deleteSale($order){
+    $dsn = 'mysql:host=sql5.freemysqlhosting.net;dbname=sql5483898';
+    $username = 'sql5483898';
+    $password = 'ulgzmHhz7l';
+    $db = new PDO($dsn, $username, $password);
+
+    $query = "DELETE FROM sql5483898.orders WHERE orderID = ? ";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':orderID', $order[0]);
+    $statement->execute();
+}
+
 
 ?>

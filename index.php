@@ -1,4 +1,5 @@
 <?php include '../362FinalProject/view/header.php'; ?>
+
 <title>Final Project</title>
     <link rel="stylesheet" type="text/css" href="main.css">
 <main>
