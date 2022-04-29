@@ -95,7 +95,7 @@ function getAllCustomers(){
     return $users;
 }
 
-function showAllSales(){
+function getAllSales(){
     $dsn = 'mysql:host=sql5.freemysqlhosting.net;dbname=sql5483898';
     $username = 'sql5483898';
     $password = 'ulgzmHhz7l';
@@ -112,7 +112,7 @@ function showAllSales(){
 
 function showAllSalesButton(){
     if(isset($_POST['all'])){
-        $orders = showAllSales();
+        $orders = getAllSales();
         foreach($orders as $order) :
             echo "<tr>";
             echo "<th>" . $order[0] . "</th>";
@@ -120,23 +120,49 @@ function showAllSalesButton(){
             echo "<th>" . $order[2] . "</th>";
             echo "<th>" . $order[3] . "</th>";
             echo "<th>" . $order[4] . "</th>";
-            echo "<th><input name='order' type='submit' value='Delete Sale'/><br></th>";
+            echo '<td><input type="checkbox" name="checkbox[]" value="'.$order[0].'" id="checkbox"></td>';
             echo "</tr>";
         endforeach; 
 
     }
 }
 
-function deleteSale($order){
+function deleteSale(){
+    $dsn = 'mysql:host=sql5.freemysqlhosting.net;dbname=sql5483898';
+    $username = 'sql5483898';
+    $password = 'ulgzmHhz7l';
+    $db = new PDO($dsn, $username, $password);
+    $list = $_POST['checkbox'];
+
+    $query = "DELETE FROM sql5483898.orders WHERE orderID IN ('.$list.')";
+    $statement = $db->prepare($query);
+    $statement->execute();
+}
+
+function searchACustomer($customer){
     $dsn = 'mysql:host=sql5.freemysqlhosting.net;dbname=sql5483898';
     $username = 'sql5483898';
     $password = 'ulgzmHhz7l';
     $db = new PDO($dsn, $username, $password);
 
-    $query = "DELETE FROM sql5483898.orders WHERE orderID = ? ";
+    $query = "SELECT * FROM sql5483898.orders WHERE uname = :uname ";
     $statement = $db->prepare($query);
-    $statement->bindValue(':orderID', $order[0]);
+    $statement->bindValue(':uname', $customer);
     $statement->execute();
+    $orders = $statement->fetchAll();
+    $statement->closeCursor();
+
+    foreach($orders as $order) :
+        echo "<tr>";
+        echo "<th>" . $order[0] . "</th>";
+        echo "<th>" . $order[1] . "</th>";
+        echo "<th>" . $order[2] . "</th>";
+        echo "<th>" . $order[3] . "</th>";
+        echo "<th>" . $order[4] . "</th>";
+        echo '<td><input type="checkbox" name="checkbox[]" value=' . $order[0] . ' id="checkbox"></td>';
+        echo "</tr>";
+    endforeach; 
+
 }
 
 
